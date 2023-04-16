@@ -500,7 +500,8 @@ class ApiService {
     final url = Uri.parse("$baseUrl/movie?id=$id");
     final response = await http.get(url);
     if (response.statusCode == 200) {
-      final Map<String, dynamic> movie = jsonDecode(response.body);
+      final Map<String, dynamic> movie =
+          json.decode(utf8.decode(response.bodyBytes));
       return MovieModel.fromJson(movie);
     }
     throw Error();
